@@ -200,3 +200,31 @@ li {
 textarea {
   resize: none;
 }
+
+/* -- Specifics -- */
+
+main {
+  width: 60vw;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img {
+  max-height: 500px;
+  margin-inline: auto;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+p {
+  column-count: 2;
+  column-gap: 2rem;
+}
+
+.stack>*+* {
+  margin-top: 1rem;
+}
