@@ -20,21 +20,39 @@ fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`)
     });
 
     /* --- Building the list of ingredients --- */
+    function buildIngredientsArr() {
     let ingredientsList = [];
-    let ingredient;
+    let ingredientVar;
     let ingredientItem;
+    let ingredientMeasureVar;
+    let ingredientMeasure;
     for (let i = 1; i <= 15; i++) {
-    ingredient = `strIngredient${i}`;
-    ingredientItem = data.drinks[0][ingredient];
-    if (!ingredientItem) break;
+    ingredientVar = `strIngredient${i}`;
+    ingredientMeasureVar = `strMeasure${i}`;
+    ingredientItem = data.drinks[0][ingredientVar];
+    ingredientMeasure = data.drinks[0][ingredientMeasureVar];
+    if (!ingredientItem) 
+      break;
+    else if (ingredientMeasure) 
+      ingredientsList.push(`${ingredientMeasure} ${ingredientItem}`);
     else ingredientsList.push(ingredientItem);
-    };
+    }
     console.log(ingredientsList);
+    makeList(ingredientsList);
+    };
+ 
+    function makeList(arr) {
+      arr.forEach(element => {
+      let ingredient = document.createElement("li");
+      ingredient.innerText = element;
+      document.querySelector("#ingredients").appendChild(ingredient);
+    })};
 
     document.querySelector("h2").innerText = data.drinks[0].strDrink;
     document.querySelector("img").src = data.drinks[0].strDrinkThumb;
     document.querySelector("img").alt = `Photograph of a ${searchTerm}`;
     document.querySelector(".glass").innerText = `Select a ${data.drinks[0].strGlass}`;
+    buildIngredientsArr();
   })
   .catch(err => {
     console.log(`error ${err}`)
