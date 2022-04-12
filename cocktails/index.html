@@ -6,21 +6,30 @@
 	<meta name="description" content="This is where your description goes">
 	<meta name="keywords" content="one, two, three">
 
-	<title>Title in the tab</title>
+	<title>Cocktail Finder</title>
 
 	<!-- external CSS link -->
 	<link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
+	<main>
 
-	<h1>Which Cocktail?</h1>
-	<input type="text" name="" value="">
-	<button type="button" name="button">Get Cocktail</button>
+		<section>
+			<h1>Which Cocktail?</h1>
+			<input type="text" name="" value="">
+			<button type="button" name="button">Get Cocktail</button>
+		</section>
 
-	<h2>Name</h2>
-	<img src="" alt="">
-	<h3>Instructions</h3>
+		<section class="card">
+			<h2>Name</h2>
+			<img src="" alt="">
+			<h3 aria-labelledby="ingredients">Ingredients</h3>
+			<ul id="ingredients"></ul>
+			<h3 aria-labelledby="instructions">Instructions</h3>
+			<ul id="instructions"></ul>
+		</section>
+	</main>
 
 	<script type="text/javascript" src="./main.js"></script>
 </body>
