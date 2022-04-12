@@ -11,49 +11,53 @@ fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`)
     console.log(data);
     console.log(data.drinks[0]);
 
+
+    /* -- clearing old data, but it isn't working --- */
+    function clearOld(target) {
+      document.querySelector([target]).innerHTML = "";
+    }
     /* --- Building the list of instructions --- */
+    function getInstructions() {
     let instructionList = data.drinks[0].strInstructions.split(". ");
-    instructionList.forEach(element => {
-      let instructionPoint = document.createElement("li");
-      instructionPoint.innerText = element;
-      document.querySelector("#instructions").appendChild(instructionPoint);
-    });
+    makeList(instructionList, "#instructions");
+   };
 
     /* --- Building the list of ingredients --- */
-    function buildIngredientsArr() {
+    function getIngredients() {
     let ingredientsList = [];
     let ingredientVar;
     let ingredientItem;
     let ingredientMeasureVar;
     let ingredientMeasure;
     for (let i = 1; i <= 15; i++) {
-    ingredientVar = `strIngredient${i}`;
-    ingredientMeasureVar = `strMeasure${i}`;
-    ingredientItem = data.drinks[0][ingredientVar];
-    ingredientMeasure = data.drinks[0][ingredientMeasureVar];
-    if (!ingredientItem) 
-      break;
-    else if (ingredientMeasure) 
-      ingredientsList.push(`${ingredientMeasure} ${ingredientItem}`);
-    else ingredientsList.push(ingredientItem);
+      ingredientVar = `strIngredient${i}`;
+      ingredientMeasureVar = `strMeasure${i}`;
+      ingredientItem = data.drinks[0][ingredientVar];
+      ingredientMeasure = data.drinks[0][ingredientMeasureVar];
+      if (!ingredientItem) 
+        break;
+      else if (ingredientMeasure) 
+        ingredientsList.push(`${ingredientMeasure} ${ingredientItem}`);
+      else ingredientsList.push(ingredientItem);
     }
-    console.log(ingredientsList);
-    makeList(ingredientsList);
+    makeList(ingredientsList, "#ingredients");
     };
  
-    function makeList(arr) {
+    function makeList(arr, target) {
       arr.forEach(element => {
-      let ingredient = document.createElement("li");
-      ingredient.innerText = element;
-      document.querySelector("#ingredients").appendChild(ingredient);
+      let listItem = document.createElement("li");
+      listItem.innerText = element;
+      document.querySelector([target]).appendChild(listItem);
     })};
 
     document.querySelector("h2").innerText = data.drinks[0].strDrink;
     document.querySelector("img").src = data.drinks[0].strDrinkThumb;
     document.querySelector("img").alt = `Photograph of a ${searchTerm}`;
     document.querySelector(".glass").innerText = `Select a ${data.drinks[0].strGlass}`;
-    buildIngredientsArr();
+    getIngredients();
+    getInstructions();
   })
+
   .catch(err => {
     console.log(`error ${err}`)
   })
