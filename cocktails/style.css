@@ -211,6 +211,13 @@ h2 {
 /* ----- Specific elements -------- */
 
 
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .card {
   background-color: var(--color-light);
   width: min(90%, 400px);
@@ -257,4 +264,8 @@ h2 {
 
 .card>p {
   text-align: center;
+}
+
+.hidden {
+  visibility: hidden;
 }
