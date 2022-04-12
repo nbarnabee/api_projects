@@ -20,7 +20,16 @@ fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`)
     });
 
     /* --- Building the list of ingredients --- */
-    //let ingredientsList = 
+    let ingredientsList = [];
+    let ingredient;
+    let ingredientItem;
+    for (let i = 1; i <= 15; i++) {
+    ingredient = `strIngredient${i}`;
+    ingredientItem = data.drinks[0][ingredient];
+    if (!ingredientItem) break;
+    else ingredientsList.push(ingredientItem);
+    };
+    console.log(ingredientsList);
 
     document.querySelector("h2").innerText = data.drinks[0].strDrink;
     document.querySelector("img").src = data.drinks[0].strDrinkThumb;
