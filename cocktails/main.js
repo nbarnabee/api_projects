@@ -11,14 +11,10 @@ fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`)
     console.log(data);
     console.log(data.drinks[0]);
 
-
-    /* -- clearing old data, but it isn't working --- */
-    function clearOld(target) {
-      document.querySelector([target]).innerHTML = "";
-    }
     /* --- Building the list of instructions --- */
     function getInstructions() {
-    let instructionList = data.drinks[0].strInstructions.split(". ");
+    let instructionList = [`Select a ${data.drinks[0].strGlass}`];
+    instructionList = instructionList.concat(data.drinks[0].strInstructions.split(". "));
     makeList(instructionList, "#instructions");
    };
 
@@ -34,16 +30,17 @@ fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`)
       ingredientMeasureVar = `strMeasure${i}`;
       ingredientItem = data.drinks[0][ingredientVar];
       ingredientMeasure = data.drinks[0][ingredientMeasureVar];
-      if (!ingredientItem) 
+      if (!ingredientItem)
         break;
-      else if (ingredientMeasure) 
+      else if (ingredientMeasure)
         ingredientsList.push(`${ingredientMeasure} ${ingredientItem}`);
       else ingredientsList.push(ingredientItem);
     }
     makeList(ingredientsList, "#ingredients");
     };
- 
+
     function makeList(arr, target) {
+      document.querySelector([target]).innerHTML = "";
       arr.forEach(element => {
       let listItem = document.createElement("li");
       listItem.innerText = element;
@@ -52,8 +49,6 @@ fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`)
 
     document.querySelector("h2").innerText = data.drinks[0].strDrink;
     document.querySelector("img").src = data.drinks[0].strDrinkThumb;
-    document.querySelector("img").alt = `Photograph of a ${searchTerm}`;
-    document.querySelector(".glass").innerText = `Select a ${data.drinks[0].strGlass}`;
     getIngredients();
     getInstructions();
   })
