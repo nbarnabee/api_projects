@@ -213,7 +213,7 @@ h2 {
 
 .card {
   background-color: var(--color-light);
-  width: min(90%, 500px);
+  width: min(90%, 400px);
   margin: 20px auto;
   padding-block: min(5vw, 50px);
   padding-inline: min(4vw, 30px);
@@ -236,8 +236,8 @@ h2 {
 
 .card>img {
   display: block;
-  max-width: 100%;
-  width: 80%;
+  max-height: 200px;
+  width: auto;
 }
 
 #ingredients {
@@ -248,6 +248,7 @@ h2 {
 
 #instructions {
   max-width: 50ch;
+  padding-left: 15px;
 }
 
 #instructions>*+* {
