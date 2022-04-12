@@ -25,6 +25,7 @@ fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`)
     document.querySelector("h2").innerText = data.drinks[0].strDrink;
     document.querySelector("img").src = data.drinks[0].strDrinkThumb;
     document.querySelector("img").alt = `Photograph of a ${searchTerm}`;
+    document.querySelector(".glass").innerText = `Serve in a ${data.drinks[0].strGlass}`;
   })
   .catch(err => {
     console.log(`error ${err}`)
