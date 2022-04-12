@@ -240,11 +240,13 @@ h2 {
   width: 80%;
 }
 
-.card>ul {
+.card>ul,
+.card>ol {
   max-width: 50ch;
 }
 
-.card>ul>*+* {
+.card>ul>*+*,
+.card>ol>*+* {
   margin-top: 0.5rem;
 }
 
