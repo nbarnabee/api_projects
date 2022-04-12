@@ -1,5 +1,5 @@
 //The user will enter a cocktail. Get a cocktail name, photo, and instructions and place them in the DOM
-
+document.querySelector("input").value = "";
 document.querySelector("button").addEventListener("click", getDrink);
 
 function getDrink() {
@@ -51,9 +51,12 @@ fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`)
     document.querySelector("img").src = data.drinks[0].strDrinkThumb;
     getIngredients();
     getInstructions();
+    document.querySelector("input").value = "";
   })
 
   .catch(err => {
     console.log(`error ${err}`)
+    alert("Sorry, we didn't find anything");
+    document.querySelector("input").value = "";
   })
 }
