@@ -205,7 +205,7 @@ textarea {
 
 main {
   width: 60vw;
-  margin-top: 3rem;
+  margin-top: 1rem;
   margin-inline: auto;
   display: flex;
   flex-direction: column;
@@ -213,7 +213,7 @@ main {
 }
 
 img {
-  max-height: 500px;
+  max-height: 450px;
   margin-inline: auto;
 }
 
