@@ -228,3 +228,7 @@ p {
 .stack>*+* {
   margin-top: 1rem;
 }
+
+.hidden {
+  display: none;
+}
