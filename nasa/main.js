@@ -4,8 +4,8 @@ fetch("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")
   console.log(data)
   //and do whatever else you want to do with it here
   if (data.media_type==="video") {
-    document.querySelector("source").src=data.url;
-    document.querySelector("video").classList.remove("hidden");
+    document.querySelector("iframe").src=data.url;
+    document.querySelector("iframe").classList.remove("hidden");
   }
     else document.querySelector("img").src=data.url;
   document.querySelector("h1").innerText=`${data.date}:  ${data.title}`;
