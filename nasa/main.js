@@ -8,6 +8,9 @@ fetch("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")
     document.querySelector("iframe").classList.remove("hidden");
   }
     else document.querySelector("img").src=data.url;
+  if (data.copyright)
+   {console.log(data.copyright);
+    document.querySelector(".copyright").innerHTML = `&copy; ${data.copyright}`};
   document.querySelector("h1").innerText=`${data.date}:  ${data.title}`;
   document.querySelector(".explanation").innerText=data.explanation;
 })

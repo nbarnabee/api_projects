@@ -205,7 +205,8 @@ textarea {
 
 main {
   width: 60vw;
-  margin: 3rem auto;
+  margin-top: 3rem;
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -229,6 +230,35 @@ p {
   margin-top: 1rem;
 }
 
+.copyright {
+  margin-top: 0rem;
+  font-size: 0.8rem;
+}
+
+.datepicker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 2rem auto;
+}
+
+button {
+  cursor: pointer;
+  padding: 0.25em 0.5em;
+  border-radius: 5px;
+}
+
 .hidden {
   display: none;
+}
+
+
+
+@media all and (max-width: 900px) {
+  p {
+    column-count: 1;
+    width: 60ch;
+  }
+
 }
