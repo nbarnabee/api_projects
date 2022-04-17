@@ -10,7 +10,7 @@ function generatePitch() {
   fetch("https://corporatebs-generator.sameerkumar.website/")
   .then(res=>res.json())
   .then(data => {
-    document.querySelector("h2").innerHTML = `${getRandomElement(adjective1)} ${getRandomElement(adjective2)} ${getRandomElement(randomNoun)} that will ${data.phrase.toLowerCase()}`;
+    document.querySelector("h1").innerHTML = `${getRandomElement(adjective1)} ${getRandomElement(adjective2)} ${getRandomElement(randomNoun)} that will ${data.phrase.toLowerCase()}`;
   })
 };
 
