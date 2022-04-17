@@ -211,17 +211,33 @@ textarea {
 }
 
 body {
-  background-color: var(--bg-color);
+  background: url("./assets/michael-fousert-RNsKphkdBTk-unsplash.jpg") center/cover no-repeat;
   color: var(--text-color);
   font-family: var(--body-font);
 }
 
+main {
+  background-color: var(--bg-color);
+  margin-top: 2rem;
+  padding: 1rem;
+  width: 60%;
+  margin-inline: auto;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
 h2 {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  width: 40ch;
+  align-self: center;
 }
 
 small {
   font-size: 0.85rem;
+  text-align: center;
 }
 
 .title {
@@ -247,4 +263,5 @@ button {
   font-size: 0.9rem;
   border-radius: 3.5rem;
   background: var(--text-color);
+  width: 25%;
 }
