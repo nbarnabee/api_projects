@@ -219,7 +219,7 @@ body {
 main {
   background-color: var(--bg-color);
   margin-top: min(20vh, 25%);
-  padding-block: 2vw;
+  padding-block: min(20px, 6%);
   padding-inline: 1vw;
   width: 100%;
 }
