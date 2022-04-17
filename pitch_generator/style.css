@@ -221,8 +221,12 @@ main {
   margin-top: min(20vh, 25%);
   padding-block: 2vw;
   padding-inline: 1vw;
-  max-width: 1024px;
+  width: 100%;
+}
+
+section {
   margin-inline: auto;
+  max-width: 1024px;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
@@ -233,12 +237,14 @@ main {
 h1 {
   font-size: 1.5rem;
   max-width: 80%;
+  margin-inline: auto;
   padding-top: 2rem;
 }
 
 small {
   font-size: 0.85rem;
   text-align: center;
+  padding-inline: 10%;
 }
 
 .title {
