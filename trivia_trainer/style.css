@@ -8,6 +8,6 @@ h3 {
   flex-direction: column;
 }
 
-fieldset .answer-radio+.answer-radio {
+fieldset label+label {
   margin-top: 6px;
 }
