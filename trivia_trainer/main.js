@@ -45,7 +45,7 @@ function makeQuestionBlock(result, i) {
   if (result.type === "multiple")
     answerSet = makeAnswerList(result.correct_answer, result.incorrect_answers)
     else answerSet = ["True", "False"];
-  console.log(answerSet);
+  // console.log(answerSet);
   let questionBlock = document.createElement("section");
   if (answerSet.length == 2)
     questionBlock.innerHTML = `<section class="question-block">
@@ -85,7 +85,8 @@ function shuffleArray(array) {
 
 
 function checkAnswers() {
-
+  let checkedAnswers = Array.from(document.querySelectorAll(".answer-radio")).filter(e => e.checked).map(e => e.value);
+  console.log(checkedAnswers);
 }
 
 /* 
