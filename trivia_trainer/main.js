@@ -46,18 +46,18 @@ function makeQuestionBlock(result) {
     <h3>${question}</h3>
     <small>${category}, ${difficulty}</small>
     <fieldset>
-    <label>${answerSet[0]}<input type="checkbox" value="${answerSet[0]}"</label>
-    <label>${answerSet[1]}<input type="checkbox" value="${answerSet[1]}"</label>
+    <label>${answerSet[0]}<input type="radio" value="${answerSet[0]}"</label>
+    <label>${answerSet[1]}<input type="radio" value="${answerSet[1]}"</label>
     </fieldset>`
   else 
   questionBlock.innerHTML = `<section class="question">
     <h3>${question}</h3>
     <small>${category}, ${difficulty}</small>
     <fieldset class="flex-column">
-    <label><input type="checkbox" value="${answerSet[0]}">${answerSet[0]}</label>
-    <label><input type="checkbox" value="${answerSet[1]}">${answerSet[1]}</label>
-    <label><input type="checkbox" value="${answerSet[2]}">${answerSet[2]}</label>
-    <label><input type="checkbox" value="${answerSet[3]}">${answerSet[3]}</label>
+    <label><input type="radio" value="${answerSet[0]}">${answerSet[0]}</label>
+    <label><input type="radio" value="${answerSet[1]}">${answerSet[1]}</label>
+    <label><input type="radio" value="${answerSet[2]}">${answerSet[2]}</label>
+    <label><input type="radio" value="${answerSet[3]}">${answerSet[3]}</label>
     </fieldset>`
   document.querySelector(".quiz-display").appendChild(questionBlock);
 };
