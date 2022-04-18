@@ -55,7 +55,7 @@ function makeQuestionBlock(result, i) {
     <h3>${question}</h3>
     <small>${category}, ${difficulty} difficulty</small>
     <fieldset>
-    <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[0]}">${answerSet[0]}</label>
+    <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[0]}" checked>${answerSet[0]}</label>
     <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[1]}">${answerSet[1]}</label>
     </fieldset>`
   else 
@@ -63,7 +63,7 @@ function makeQuestionBlock(result, i) {
     <h3>${question}</h3>
     <small>${category}, ${difficulty} difficulty</small>
     <fieldset class="flex-column">
-    <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[0]}">${answerSet[0]}</label>
+    <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[0]}" checked>${answerSet[0]}</label>
     <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[1]}">${answerSet[1]}</label>
     <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[2]}">${answerSet[2]}</label>
     <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[3]}">${answerSet[3]}</label>
