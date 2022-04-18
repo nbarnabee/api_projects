@@ -2,12 +2,13 @@
 document.getElementById("question-getter").addEventListener("click", getQuestions);
 document.getElementById("answer-getter").addEventListener("click", checkAnswers);
 let correctAnswers = [];
-let score = 0;
+let totalScore = 0;
 let questionTotal = 0;
 let amount;
 
 function getQuestions() {
   document.querySelector(".quiz-display").innerHTML="";
+  document.querySelector(".answer-display").innerHTML="";
   let url;
   amount = document.getElementById("question-amount").value;
   questionTotal += +amount;
@@ -88,6 +89,7 @@ function shuffleArray(array) {
 
 
 function checkAnswers() {
+  let score = 0;
   let checkedAnswers = Array.from(document.querySelectorAll(".answer-radio")).filter(e => e.checked).map(e => e.value);
   console.log(checkedAnswers);
   if (checkedAnswers.length !== correctAnswers.length) {
@@ -106,8 +108,10 @@ function checkAnswers() {
       else 
         answerOutput += `You chose ${checkedAnswers[i]} for Question ${i+1}.  The correct answer was ${correctAnswers[i]}.<br>`
     }
-    answerOutput += `You scored ${score}/${questionTotal}.`;
+    totalScore += score;
+    answerOutput += `You scored ${score}/${amount} this round.  Your total score is ${totalScore}/${questionTotal}`;
     document.querySelector(".answer-display").innerHTML = answerOutput;
+    correctAnswers.length = 0;
   }
 }
 
