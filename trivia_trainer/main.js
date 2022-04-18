@@ -20,6 +20,9 @@ function getQuestions() {
     });
     console.log(correctAnswers);
     localStorage.setItem("answers", correctAnswers);
+   let answerButton = document.createElement("button");
+   answerButton.innerText = "Submit answers";
+  document.querySelector(".quiz-display").appendChild(answerButton);
   })
   .catch(error => {
     console.log(`Error: ${error}`);
