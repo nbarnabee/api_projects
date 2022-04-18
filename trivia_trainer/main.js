@@ -11,7 +11,8 @@ function getQuestions() {
   fetch(url)
   .then(result => result.json())
   .then(data => {
-  console.log(data);
+    console.log(data);
+    data.results.forEach(result => makeQuestionBlock(result));
   })
   .catch(error => {
     console.log(`Error: ${error}`);
@@ -19,24 +20,26 @@ function getQuestions() {
   })
 }
 
-
-// structure is data.results[NUM]....
-
-/*  Ok, we're doing a few things here.
-1. assemble the questions/answers
-
-data.results.forEach(result => makeQuestionBlock(result));
-
 function makeQuestionBlock(result) {
   let question = result.question;
   let difficulty = result.difficulty;
-  let category = result.difficulty;
+  let category = result.category;
+  let questionBlock = document.createElement("section");questionBlock.innerHTML = `<section class="question"><h3>${question}</h3><small>Category: ${category}<br>Difficulty: ${difficulty}</small>`
+  document.querySelector(".quiz-display").appendChild(questionBlock);
+}
+
+
+// structure is data.results[NUM]....
+
+/*
   if (result.type = "multiple") {
     let answerSet = result.incorrect_answers.push(result.correct_answer);
     let answerSetFinal = shuffleArray(answerSet)
     }
     else let answerSetFinal = ["True", "False"];
   makeAnswerList(answerSetFinal);
+
+  */
   
 // for multiple choice questions, need radio buttons for each one
 // for true/false questions, need two radio buttons
@@ -50,23 +53,3 @@ function shuffleArray(arr) {
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
-
-question format:
-`<section class="question"><h3>${question}</h3><small>Category: ${category}, Difficulty: ${difficulty}</small>`
-
-
-
-
-
-2. put them on the page
-
-document.querySelector(".quiz").appendChild
-
-3. evaluate the response
-
-
-
-
-
-
-*/
