@@ -2,12 +2,15 @@
 document.getElementById("question-getter").addEventListener("click", getQuestions);
 document.getElementById("answer-getter").addEventListener("click", checkAnswers);
 let correctAnswers = [];
+let score = 0;
+let questionTotal = 0;
 let amount;
 
 function getQuestions() {
   document.querySelector(".quiz-display").innerHTML="";
   let url;
   amount = document.getElementById("question-amount").value;
+  questionTotal += +amount;
   let select = document.querySelector("select");
   let difficulty = select.options[select.selectedIndex].value;
   url = buildURL(difficulty, amount)
@@ -87,6 +90,25 @@ function shuffleArray(array) {
 function checkAnswers() {
   let checkedAnswers = Array.from(document.querySelectorAll(".answer-radio")).filter(e => e.checked).map(e => e.value);
   console.log(checkedAnswers);
+  if (checkedAnswers.length !== correctAnswers.length) {
+    alert("Please answer all of the questions!")
+    checkedAnswers.length = 0;
+    return;
+  }
+  else { 
+    document.getElementById("answer-getter").classList.add("hidden");
+    let answerOutput = "";
+    for (let i = 0; i < checkedAnswers.length; i++) {
+      if (checkedAnswers[i] === correctAnswers[i]) {
+        answerOutput += `You chose ${checkedAnswers[i]} for Question ${i+1}.  Correct!<br>`
+        score += 1;
+      }
+      else 
+        answerOutput += `You chose ${checkedAnswers[i]} for Question ${i+1}.  The correct answer was ${correctAnswers[i]}.<br>`
+    }
+    answerOutput += `You scored ${score}/${questionTotal}.`;
+    document.querySelector(".answer-display").innerHTML = answerOutput;
+  }
 }
 
 /* 
