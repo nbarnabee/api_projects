@@ -18,7 +18,6 @@ function getQuestions() {
   fetch(url)
   .then(result => result.json())
   .then(data => {
-    console.log(data);
     data.results.forEach((result, i) => { 
       makeQuestionBlock(result, i);
       correctAnswers.push(result.correct_answer);
@@ -37,7 +36,6 @@ function buildURL(difficulty, amount) {
     url = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}`
   else 
     url = `https://opentdb.com/api.php?amount=${amount}`;
-  console.log(url);
   return url;
 }
 
@@ -49,7 +47,6 @@ function makeQuestionBlock(result, i) {
   if (result.type === "multiple")
     answerSet = makeAnswerList(result.correct_answer, result.incorrect_answers)
     else answerSet = ["True", "False"];
-  // console.log(answerSet);
   let questionBlock = document.createElement("section");
   if (answerSet.length == 2)
     questionBlock.innerHTML = `<section class="question-block">
@@ -91,7 +88,6 @@ function shuffleArray(array) {
 function checkAnswers() {
   let score = 0;
   let checkedAnswers = Array.from(document.querySelectorAll(".answer-radio")).filter(e => e.checked).map(e => e.value);
-  console.log(checkedAnswers);
   if (checkedAnswers.length !== correctAnswers.length) {
     alert("Please answer all of the questions!")
     checkedAnswers.length = 0;
@@ -109,7 +105,7 @@ function checkAnswers() {
         answerOutput += `You chose ${checkedAnswers[i]} for Question ${i+1}.  The correct answer was ${correctAnswers[i]}.<br>`
     }
     totalScore += score;
-    answerOutput += `You scored ${score}/${amount} this round.  Your total score is ${totalScore}/${questionTotal}`;
+    answerOutput += `You scored ${score}/${amount} this round.  Your total score is ${totalScore}/${questionTotal}.`;
     document.querySelector(".answer-display").innerHTML = answerOutput;
     correctAnswers.length = 0;
   }
