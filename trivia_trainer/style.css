@@ -11,3 +11,7 @@ h3 {
 fieldset label+label {
   margin-top: 6px;
 }
+
+.hidden {
+  display: none;
+}

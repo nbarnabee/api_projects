@@ -1,12 +1,13 @@
 
 document.getElementById("question-getter").addEventListener("click", getQuestions);
-
+document.getElementById("answer-getter").addEventListener("click", checkAnswers);
+let correctAnswers = [];
+let amount;
 
 function getQuestions() {
   document.querySelector(".quiz-display").innerHTML="";
   let url;
-  let correctAnswers = [];
-  let amount = document.getElementById("question-amount").value;
+  amount = document.getElementById("question-amount").value;
   let select = document.querySelector("select");
   let difficulty = select.options[select.selectedIndex].value;
   url = buildURL(difficulty, amount)
@@ -17,12 +18,8 @@ function getQuestions() {
     data.results.forEach((result, i) => { 
       makeQuestionBlock(result, i);
       correctAnswers.push(result.correct_answer);
+      document.getElementById("answer-getter").classList.remove("hidden");
     });
-    console.log(correctAnswers);
-    localStorage.setItem("answers", correctAnswers);
-   let answerButton = document.createElement("button");
-   answerButton.innerText = "Submit answers";
-  document.querySelector(".quiz-display").appendChild(answerButton);
   })
   .catch(error => {
     console.log(`Error: ${error}`);
@@ -55,7 +52,7 @@ function makeQuestionBlock(result, i) {
     <h3>${question}</h3>
     <small>${category}, ${difficulty} difficulty</small>
     <fieldset>
-    <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[0]}" checked>${answerSet[0]}</label>
+    <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[0]}">${answerSet[0]}</label>
     <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[1]}">${answerSet[1]}</label>
     </fieldset>`
   else 
@@ -63,7 +60,7 @@ function makeQuestionBlock(result, i) {
     <h3>${question}</h3>
     <small>${category}, ${difficulty} difficulty</small>
     <fieldset class="flex-column">
-    <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[0]}" checked>${answerSet[0]}</label>
+    <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[0]}">${answerSet[0]}</label>
     <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[1]}">${answerSet[1]}</label>
     <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[2]}">${answerSet[2]}</label>
     <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[3]}">${answerSet[3]}</label>
@@ -77,6 +74,7 @@ function makeAnswerList(trueString, answerArr) {
   return shuffleArray(answerArr);
 }
 
+
 function shuffleArray(array) {
   for (let i = array.length -1; i > 0; i--) {
     let j = Math.floor(Math.random()*(i+1));
@@ -86,6 +84,10 @@ function shuffleArray(array) {
 }
 
 
+function checkAnswers() {
+
+}
+
 /* 
 
 What do I need to do now?
@@ -94,6 +96,6 @@ make an array of the correct answers
 make an array of the answers from the question blocks
 compare the two arrays
 
-
+To do: refactor this into an OOP way of doing it, which would make more sense
 
 */
