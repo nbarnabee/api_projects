@@ -1,15 +1,23 @@
 
+document.getElementById("question-getter").addEventListener("click", getQuestions);
 
 
-fetch(url)
-.then(result => result.json())
-.then(data => {
- //put the code to make it do the thing
-})
-.catch(error => {
-  console.log(`Error: ${error}`);
-  // any additional error messages here
-})
+function getQuestions() {
+  let url;
+  let amount = document.getElementById("question-amount").value;
+  if (amount && amount>0) 
+    url = `https://opentdb.com/api.php?amount=${amount}`;
+    else url = `https://opentdb.com/api.php?amount=1`;
+  fetch(url)
+  .then(result => result.json())
+  .then(data => {
+  console.log(data);
+  })
+  .catch(error => {
+    console.log(`Error: ${error}`);
+    // any additional error messages here
+  })
+}
 
 
 // structure is data.results[NUM]....
