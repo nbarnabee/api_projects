@@ -13,7 +13,7 @@ function getQuestions() {
   .then(result => result.json())
   .then(data => {
     console.log(data);
-    data.results.forEach(result => makeQuestionBlock(result));
+    data.results.forEach((result, i) => makeQuestionBlock(result, i));
   })
   .catch(error => {
     console.log(`Error: ${error}`);
@@ -31,7 +31,7 @@ function buildURL(difficulty, amount) {
   return url;
 }
 
-function makeQuestionBlock(result) {
+function makeQuestionBlock(result, i) {
   let question = result.question;
   let difficulty = result.difficulty;
   let category = result.category;
@@ -46,21 +46,21 @@ function makeQuestionBlock(result) {
     <h3>${question}</h3>
     <small>${category}, ${difficulty}</small>
     <fieldset>
-    <label><input type="radio" value="${answerSet[0]}">${answerSet[0]}</label>
-    <label><input type="radio" value="${answerSet[1]}">${answerSet[1]}</label>
+    <label><input type="radio" name="answer${i}" value="${answerSet[0]}">${answerSet[0]}</label>
+    <label><input type="radio" name="answer${i}" value="${answerSet[1]}">${answerSet[1]}</label>
     </fieldset>`
   else 
   questionBlock.innerHTML = `<section class="question">
     <h3>${question}</h3>
     <small>${category}, ${difficulty}</small>
     <fieldset class="flex-column">
-    <label><input type="radio" value="${answerSet[0]}">${answerSet[0]}</label>
-    <label><input type="radio" value="${answerSet[1]}">${answerSet[1]}</label>
-    <label><input type="radio" value="${answerSet[2]}">${answerSet[2]}</label>
-    <label><input type="radio" value="${answerSet[3]}">${answerSet[3]}</label>
+    <label><input type="radio" name="answer${i}" value="${answerSet[0]}">${answerSet[0]}</label>
+    <label><input type="radio" name="answer${i}" value="${answerSet[1]}">${answerSet[1]}</label>
+    <label><input type="radio" name="answer${i}" value="${answerSet[2]}">${answerSet[2]}</label>
+    <label><input type="radio" name="answer${i}" value="${answerSet[3]}">${answerSet[3]}</label>
     </fieldset>`
   document.querySelector(".quiz-display").appendChild(questionBlock);
-};
+}
 
 
 
