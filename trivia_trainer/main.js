@@ -5,6 +5,7 @@ document.getElementById("question-getter").addEventListener("click", getQuestion
 function getQuestions() {
   document.querySelector(".quiz-display").innerHTML="";
   let url;
+  let correctAnswers = [];
   let amount = document.getElementById("question-amount").value;
   let select = document.querySelector("select");
   let difficulty = select.options[select.selectedIndex].value;
@@ -13,7 +14,11 @@ function getQuestions() {
   .then(result => result.json())
   .then(data => {
     console.log(data);
-    data.results.forEach((result, i) => makeQuestionBlock(result, i));
+    data.results.forEach((result, i) => { 
+      makeQuestionBlock(result, i);
+      correctAnswers.push(result.correct_answer);
+    });
+    console.log(correctAnswers);
   })
   .catch(error => {
     console.log(`Error: ${error}`);
@@ -42,7 +47,7 @@ function makeQuestionBlock(result, i) {
   console.log(answerSet);
   let questionBlock = document.createElement("section");
   if (answerSet.length == 2)
-    questionBlock.innerHTML = `<section class="question">
+    questionBlock.innerHTML = `<section class="question-block">
     <h3>${question}</h3>
     <small>${category}, ${difficulty} difficulty</small>
     <fieldset>
@@ -50,7 +55,7 @@ function makeQuestionBlock(result, i) {
     <label><input type="radio" class="answer-radio" name="answer${i}" value="${answerSet[1]}">${answerSet[1]}</label>
     </fieldset>`
   else 
-  questionBlock.innerHTML = `<section class="question">
+  questionBlock.innerHTML = `<section class="question-block">
     <h3>${question}</h3>
     <small>${category}, ${difficulty} difficulty</small>
     <fieldset class="flex-column">
@@ -61,7 +66,6 @@ function makeQuestionBlock(result, i) {
     </fieldset>`
   document.querySelector(".quiz-display").appendChild(questionBlock);
 }
-
 
 
 function makeAnswerList(trueString, answerArr) {
@@ -76,3 +80,16 @@ function shuffleArray(array) {
   }
   return array;
 }
+
+
+/* 
+
+What do I need to do now?
+
+make an array of the correct answers
+make an array of the answers from the question blocks
+compare the two arrays
+
+
+
+*/
