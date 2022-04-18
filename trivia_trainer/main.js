@@ -3,11 +3,12 @@ document.getElementById("question-getter").addEventListener("click", getQuestion
 
 
 function getQuestions() {
+  document.querySelector(".quiz-display").innerHTML="";
   let url;
   let amount = document.getElementById("question-amount").value;
-  if (amount && amount>0) 
-    url = `https://opentdb.com/api.php?amount=${amount}`;
-    else url = `https://opentdb.com/api.php?amount=1`;
+  let select = document.querySelector("select");
+  let difficulty = select.options[select.selectedIndex].value;
+  url = buildURL(difficulty, amount)
   fetch(url)
   .then(result => result.json())
   .then(data => {
@@ -17,6 +18,17 @@ function getQuestions() {
   .catch(error => {
     console.log(`Error: ${error}`);
   })
+}
+
+function buildURL(difficulty, amount) {
+  if (!amount || amount <= 0)
+    amount = 1;
+  if (difficulty) 
+    url = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}`
+  else 
+    url = `https://opentdb.com/api.php?amount=1`;
+  console.log(url);
+  return url;
 }
 
 function makeQuestionBlock(result) {
@@ -32,7 +44,7 @@ function makeQuestionBlock(result) {
   if (answerSet.length == 2)
     questionBlock.innerHTML = `<section class="question">
     <h3>${question}</h3>
-    <small>${category}</small>
+    <small>${category}, ${difficulty}</small>
     <fieldset>
     <label>${answerSet[0]}<input type="checkbox" value="${answerSet[0]}"</label>
     <label>${answerSet[1]}<input type="checkbox" value="${answerSet[1]}"</label>
@@ -40,7 +52,7 @@ function makeQuestionBlock(result) {
   else 
   questionBlock.innerHTML = `<section class="question">
     <h3>${question}</h3>
-    <small>${category}</small>
+    <small>${category}, ${difficulty}</small>
     <fieldset class="flex-column">
     <label><input type="checkbox" value="${answerSet[0]}">${answerSet[0]}</label>
     <label><input type="checkbox" value="${answerSet[1]}">${answerSet[1]}</label>
@@ -64,35 +76,3 @@ function shuffleArray(array) {
   }
   return array;
 }
-
-
-/*
- let answerSet;
-  let answerSetFinal;
-  if (result.type === "multiple") {
-    answerSet = result.incorrect_answers.slice().push(result.correct_answer);
-    answerSetFinal = shuffleArray(answerSet)
-    }
-    else answerSetFinal = ["True", "False"];
-  console.log(answerSetFinal);
-  // makeAnswerList(answerSetFinal);
-
-
-
-    let answer;
-  let answerBlock = document.createElement("fieldset").appendChild(
-arr.forEach(e => {
-  answer = document.createElement("label");
-  answer.innerHTML = `${e}<input type="radio" value="${e}">`}))
-  return answerBlock;
-}
-
-*/
-
-  
-// for multiple choice questions, need radio buttons for each one
-// for true/false questions, need two radio buttons
-
-
-//run the answerSet through the random scrambler function
-
