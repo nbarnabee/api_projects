@@ -110,15 +110,3 @@ function checkAnswers() {
     correctAnswers.length = 0;
   }
 }
-
-/* 
-
-What do I need to do now?
-
-make an array of the correct answers
-make an array of the answers from the question blocks
-compare the two arrays
-
-To do: refactor this into an OOP way of doing it, which would make more sense
-
-*/
