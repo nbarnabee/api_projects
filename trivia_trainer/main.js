@@ -19,6 +19,7 @@ function getQuestions() {
       correctAnswers.push(result.correct_answer);
     });
     console.log(correctAnswers);
+    localStorage.setItem("answers", correctAnswers);
   })
   .catch(error => {
     console.log(`Error: ${error}`);
