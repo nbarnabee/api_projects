@@ -26,7 +26,7 @@ function buildURL(difficulty, amount) {
   if (difficulty) 
     url = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}`
   else 
-    url = `https://opentdb.com/api.php?amount=1`;
+    url = `https://opentdb.com/api.php?amount=${amount}`;
   console.log(url);
   return url;
 }
@@ -44,7 +44,7 @@ function makeQuestionBlock(result, i) {
   if (answerSet.length == 2)
     questionBlock.innerHTML = `<section class="question">
     <h3>${question}</h3>
-    <small>${category}, ${difficulty}</small>
+    <small>${category}, ${difficulty} difficulty</small>
     <fieldset>
     <label><input type="radio" name="answer${i}" value="${answerSet[0]}">${answerSet[0]}</label>
     <label><input type="radio" name="answer${i}" value="${answerSet[1]}">${answerSet[1]}</label>
@@ -52,7 +52,7 @@ function makeQuestionBlock(result, i) {
   else 
   questionBlock.innerHTML = `<section class="question">
     <h3>${question}</h3>
-    <small>${category}, ${difficulty}</small>
+    <small>${category}, ${difficulty} difficulty</small>
     <fieldset class="flex-column">
     <label><input type="radio" name="answer${i}" value="${answerSet[0]}">${answerSet[0]}</label>
     <label><input type="radio" name="answer${i}" value="${answerSet[1]}">${answerSet[1]}</label>
