@@ -217,6 +217,13 @@ body {
   color: var(--light);
 }
 
+
+figure {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+
 blockquote {
   font-family: "Arvo", Arial, Helvetica, sans-serif;
   font-weight: 700;
@@ -225,6 +232,9 @@ blockquote {
 
 figcaption {
   font-style: italic;
+  align-self: flex-end;
+  width: 70ch;
+  margin-inline: auto;
 }
 
 
