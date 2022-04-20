@@ -1,0 +1,23 @@
+body {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+blockquote {
+  font-family: "Arvo", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+figcaption {
+  font-style: italic;
+}
+
+
+small {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-weight: 300;
+}
