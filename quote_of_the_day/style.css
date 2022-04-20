@@ -222,6 +222,12 @@ figure {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
+  align-items: flex-end;
+  height: min(400px, 40%);
+  margin-top: min(400px, 20%);
+  width: 70%;
+  gap: 0.5rem;
+  margin-inline: auto;
 }
 
 blockquote {
@@ -232,9 +238,6 @@ blockquote {
 
 figcaption {
   font-style: italic;
-  align-self: flex-end;
-  width: 70ch;
-  margin-inline: auto;
 }
 
 
