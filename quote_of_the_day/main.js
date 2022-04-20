@@ -12,19 +12,15 @@ function checkQuote() {
       console.log(currentTime > (timeStored + 86400000));
       localStorage.clear();
       getQuote();
-      getPicture();
       getTimeStamp();
     }
     else {
       let quote = JSON.parse(localStorage.getItem("dailyQuote"));
-      let picture = JSON.parse(localStorage.getItem("dailyPicture"));
       displayQuote(quote);
-      displayPicture(picture);
     }
   }
   else {
     getQuote();
-    getPicture();
     getTimeStamp();
   }
 }
@@ -39,17 +35,6 @@ function getQuote() {
   })
 };
 
-function getPicture() {
-  let id = Math.floor(Math.random() * 1000 + 1);
-  fetch(`https://picsum.photos/id/${id}/info`)
-  .then(response => response.json())
-  .then(data => {
-    displayPicture(data);
-    localStorage.setItem("dailyPicture", JSON.stringify(data));
-  });
-};
-
-
 function getTimeStamp() {
   const now = new Date(),
   time = now.getTime(),
@@ -62,8 +47,3 @@ function displayQuote(quote) {
   document.querySelector("blockquote").innerText = `${quote.quote}`;
   document.querySelector("figcaption").innerHTML = `&#8212;${quote.author}`;
 };
-
-function displayPicture(picture) {
-  document.querySelector("small").innerHTML = `Quote courtesy of <a href="http://theysaidso.com">theysaidso.com</a>. Background image by <a
-      href="${picture.url}">${picture.author}</a>`
-}
