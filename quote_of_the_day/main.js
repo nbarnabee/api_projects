@@ -12,9 +12,10 @@ function checkQuote() {
       getQuote()
     }
     else displayQuote(localStorage.getItem("dailyQuote"));
-  };
-  getQuote();
+  }
+  else getQuote();
 }
+
 
 function getQuote() {
   fetch("https://quotes.rest/qod?category=inspire&language=en")
@@ -32,6 +33,7 @@ function getQuote() {
 
 
 function displayQuote(data) {
+  console.log(data);
   getPicture();
 }
 
@@ -47,10 +49,10 @@ function displayQuote(data) {
 //width = height*1.78, so height = width/1.78
 
 function getPicture() {
-  let picWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-  let picHeight = picWidth/1.78;
-  fetch(`https://picsum.photos/${picWidth}/${picHeight}`)
+  let id = Math.floor(Math.random() * 1000 + 1);
+  fetch(`https://picsum.photos/id/${id}/info`)
+  .then(response => response.json())
   .then(data => {
-    document.querySelector("main").setAttribute("background-image", data);
+    console.log(data)
   });
 }
