@@ -45,7 +45,7 @@ function displayQuote(quote, picture) {
   document.querySelector("blockquote").innerText = `${quote.quote}`;
   document.querySelector("figcaption").innerHTML = `&#8212;${quote.author}`;
   document.querySelector("small").innerHTML = `Quote courtesy of <a href="http://theysaidso.com">theysaidso.com</a>. Background image by <a
-      href="${picture.url}">${picture.author}</a>
+      href="${picture.url}">${picture.author}</a>`
 };
 
 
