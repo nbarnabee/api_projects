@@ -29,3 +29,28 @@ function getQuote() {
     localStorage.setItem("dateStored", date);
   })
 }
+
+
+function displayQuote(data) {
+  getPicture();
+}
+
+
+//data.quote
+//data.tags
+//
+
+// check picture ids and dimensions???
+// https://picsum.photos/WIDTHVAR/HEIGHTVAR
+//landscape ratio 16:9
+//1.78
+//width = height*1.78, so height = width/1.78
+
+function getPicture() {
+  let picWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+  let picHeight = picWidth/1.78;
+  fetch(`https://picsum.photos/${picWidth}/${picHeight}`)
+  .then(data => {
+    document.querySelector("main").setAttribute("background-image", data);
+  });
+}
