@@ -189,7 +189,6 @@ h6 {
 }
 
 a {
-  text-decoration: none;
   color: inherit;
 }
 
@@ -221,6 +220,7 @@ body {
 blockquote {
   font-family: "Arvo", Arial, Helvetica, sans-serif;
   font-weight: 700;
+  font-size: 1.5rem;
 }
 
 figcaption {
@@ -234,5 +234,6 @@ small {
   left: 0;
   right: 0;
   text-align: center;
+  font-size: 0.8rem;
   font-weight: 300;
 }
