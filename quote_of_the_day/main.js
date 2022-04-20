@@ -2,29 +2,25 @@ window.onload = checkQuote
 
 function checkQuote() {
   if (localStorage.getItem("dailyQuote")) {
-    console.log("Cached quote found");
     const current = new Date(), 
       currentTime = current.getTime(),
       currentDate = current.getDay(),
       timeStored = localStorage.getItem("timeStored"),
       dateStored = localStorage.getItem("dateStored");
-      console.log(currentTime, timeStored, currentDate, dateStored);
     if (dateStored != currentDate || currentTime > (timeStored + 86400000)) {
       console.log(dateStored != currentDate);
       console.log(currentTime > (timeStored + 86400000));
-      console.log("Clearing yesterday's quote");
       localStorage.clear();
-      console.log("Old quote cleared; fetching new quote");
       getQuote()
+      getPicture()
     }
     else {
-      console.log("Displaying the cached quote");
-      displayQuote(JSON.parse(localStorage.getItem("dailyQuote")));
+      displayQuote(JSON.parse(localStorage.getItem("dailyQuote")), JSON.parse(localStorage.getItem("dailyPicture")));
     }
   }
   else {
-    console.log("No quote found; fetching new quote"); 
     getQuote();
+    getPicture();
   }
 }
 
@@ -45,11 +41,11 @@ function getQuote() {
 };
 
 
-function displayQuote(quote) {
-  console.log(quote);
+function displayQuote(quote, picture) {
   document.querySelector("blockquote").innerText = `${quote.quote}`;
   document.querySelector("figcaption").innerHTML = `&#8212;${quote.author}`;
-  getPicture();
+  document.querySelector("small").innerHTML = `Quote courtesy of <a href="http://theysaidso.com">theysaidso.com</a>. Background image by <a
+      href="${picture.url}">${picture.author}</a>
 };
 
 
@@ -69,5 +65,6 @@ function getPicture() {
   .then(response => response.json())
   .then(data => {
     console.log(data)
+    localStorage.setItem("dailyPicture", JSON.stringify(data));
   });
 };
