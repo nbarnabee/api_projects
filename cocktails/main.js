@@ -42,12 +42,12 @@ function getDrink() {
         document.querySelector([target]).innerHTML = "";
         arr.forEach(element => {
           let listItem = document.createElement("li");
-          listItem.innerText = element;
+          listItem.textContent = element;
           document.querySelector([target]).appendChild(listItem);
         })
       };
 
-      document.querySelector("h2").innerText = data.drinks[0].strDrink;
+      document.querySelector("h2").textContent = data.drinks[0].strDrink;
       document.querySelector("img").src = data.drinks[0].strDrinkThumb;
       getIngredients();
       getInstructions();

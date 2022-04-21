@@ -31,8 +31,8 @@ function getPOTD(url) {
     if (data.copyright)
       copyright.innerHTML = `&copy; ${data.copyright}`
       else copyright.innerHTML = "";
-    document.querySelector("h1").innerText=`${data.date}:  ${data.title}`;
-    document.querySelector(".explanation").innerText=data.explanation;
+    document.querySelector("h1").textContent=`${data.date}:  ${data.title}`;
+    document.querySelector(".explanation").textContent=data.explanation;
   })
   .catch(err => {
       console.log(`error ${err}`)

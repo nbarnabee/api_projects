@@ -44,6 +44,6 @@ function getTimeStamp() {
 };
 
 function displayQuote(quote) {
-  document.querySelector("blockquote").innerText = `${quote.quote}`;
+  document.querySelector("blockquote").textContent = `${quote.quote}`;
   document.querySelector("figcaption").innerHTML = `&#8212;${quote.author}`;
 };
