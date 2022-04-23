@@ -27,7 +27,7 @@ function getByDate() {
 
 function getByFav() {
   const select = document.querySelector("select");
-  const favValue = select.option[select.selectedIndex].value;
+  const favValue = select.options[select.selectedIndex].value;
   let url = `https://api.nasa.gov/planetary/apod?api_key=NGbXFaC948GisO5Nx2TmrXLKYXBa5dVQ2c5OjFKw&date=${favValue}`;
   getPOTD(url);
 }
