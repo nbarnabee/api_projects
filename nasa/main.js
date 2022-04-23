@@ -1,6 +1,7 @@
 window.onload = setCurrentDate;
 document.getElementById("date-picker").onclick = getByDate;
 document.getElementById("fav-picker").onclick = getByFav;
+document.getElementById("add-to-favs").onclick = addToFavs;
 let baseURL = "https://api.nasa.gov/planetary/apod?api_key=NGbXFaC948GisO5Nx2TmrXLKYXBa5dVQ2c5OjFKw";
 getPOTD(baseURL);
 
@@ -23,6 +24,13 @@ function getByFav() {
   const favValue = favorite.option[favorite.selectedIndex].value;
   let url = `https://api.nasa.gov/planetary/apod?api_key=NGbXFaC948GisO5Nx2TmrXLKYXBa5dVQ2c5OjFKw&date=${favValue}`;
   getPOTD(url);
+}
+
+function addToFavs() {
+  let newFav = document.getElementById("selected-date").value;
+  if (localStorage.getItem("favs")) 
+    localStorage.setItem("favs", `${localStorage.getItem("favs")}  ${newFav}`);
+  else localStorage.setItem("favs", newFav);
 }
 
 function getPOTD(url) {
