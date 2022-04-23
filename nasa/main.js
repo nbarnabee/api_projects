@@ -2,7 +2,7 @@ window.onload = setCurrentDate;
 document.getElementById("date-picker").onclick = getByDate;
 document.getElementById("fav-picker").onclick = getByFav;
 document.getElementById("add-to-favs").onclick = addToFavs;
-document.getElementById("fav-remover").onlock = removeFromFavs;
+document.getElementById("fav-remover").onclick = removeFromFavs;
 let baseURL = "https://api.nasa.gov/planetary/apod?api_key=NGbXFaC948GisO5Nx2TmrXLKYXBa5dVQ2c5OjFKw";
 getPOTD(baseURL);
 
@@ -45,7 +45,9 @@ function removeFromFavs() {
   const select = document.querySelector("select");
   const favValue = select.options[select.selectedIndex].value;
   let favList = localStorage.getItem("favs").split(" ");
-  console.log(favList);
+  favList.splice(favList.indexOf(favValue), 1);
+  localStorage.setItem("favs", favList.join(" "));
+  populateMenu();
 }
 
 function populateMenu() {
@@ -53,9 +55,6 @@ function populateMenu() {
   let favList = localStorage.getItem("favs").split(" ").filter(element => element !== "");
   let uniqueList = favList.filter((fav, i) => favList.indexOf(fav) === i).sort((a, b) => a > b ? 1 : -1);
   localStorage.setItem("favs", uniqueList.join(" "));
-  console.log(favList);
-  console.log(uniqueList);
-  console.log(localStorage.getItem("favs"));
   uniqueList.forEach(fav => {
     let newOption = document.createElement("option");
     newOption.value = fav;
