@@ -1,4 +1,9 @@
 window.onload = setCurrentDate;
+document.getElementById("date-picker").onclick = getByDate;
+document.getElementById("fav-picker").onclick = getByFav;
+let baseURL = "https://api.nasa.gov/planetary/apod?api_key=NGbXFaC948GisO5Nx2TmrXLKYXBa5dVQ2c5OjFKw";
+getPOTD(baseURL);
+
 
 function setCurrentDate() {
   let now = new Date();
@@ -6,11 +11,6 @@ function setCurrentDate() {
   document.getElementById("selected-date").valueAsDate = today;
   document.getElementById("selected-date").max = now.toLocaleDateString("en-ca");
 }
-
-document.getElementById("date-picker").onclick = getByDate;
-document.getElementById("fav-picker").onclick = getByFav;
-let baseURL = "https://api.nasa.gov/planetary/apod?api_key=NGbXFaC948GisO5Nx2TmrXLKYXBa5dVQ2c5OjFKw";
-getPOTD(baseURL);
 
 function getByDate() {
   let dateValue = document.getElementById("selected-date").value;
