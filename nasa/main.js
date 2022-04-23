@@ -3,7 +3,7 @@ window.onload = setCurrentDate;
 function setCurrentDate() {
   let now = new Date();
   let today = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
-  document.getElementById('selected-date').valueAsDate = today;
+  document.getElementById("selected-date").valueAsDate = today;
   document.getElementById("selected-date").max = now.toLocaleDateString("en-ca");
 }
 
@@ -13,7 +13,7 @@ let baseURL = "https://api.nasa.gov/planetary/apod?api_key=NGbXFaC948GisO5Nx2Tmr
 getPOTD(baseURL);
 
 function getByDate() {
-  let dateValue = document.getElementById("date-picker").value;
+  let dateValue = document.getElementById("selected-date").value;
   let url = `https://api.nasa.gov/planetary/apod?api_key=NGbXFaC948GisO5Nx2TmrXLKYXBa5dVQ2c5OjFKw&date=${dateValue}`;
   getPOTD(url);
 }
