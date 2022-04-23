@@ -8,16 +8,22 @@ function setCurrentDate() {
 }
 
 document.getElementById("date-picker").onclick = getByDate;
+document.getElementById("fav-picker").onclick = getByFav;
 let baseURL = "https://api.nasa.gov/planetary/apod?api_key=NGbXFaC948GisO5Nx2TmrXLKYXBa5dVQ2c5OjFKw";
 getPOTD(baseURL);
 
 function getByDate() {
-  let dateValue = document.getElementById("selected-date").value;
-  let date = `https://api.nasa.gov/planetary/apod?api_key=NGbXFaC948GisO5Nx2TmrXLKYXBa5dVQ2c5OjFKw&date=${dateValue}`;
-
-  getPOTD(date);
+  let dateValue = document.getElementById("date-picker").value;
+  let url = `https://api.nasa.gov/planetary/apod?api_key=NGbXFaC948GisO5Nx2TmrXLKYXBa5dVQ2c5OjFKw&date=${dateValue}`;
+  getPOTD(url);
 }
 
+function getByFav() {
+  const favorite = document.getElementById("favorites");
+  const favValue = favorite.option[favorite.selectedIndex].value;
+  let url = `https://api.nasa.gov/planetary/apod?api_key=NGbXFaC948GisO5Nx2TmrXLKYXBa5dVQ2c5OjFKw&date=${favValue}`;
+  getPOTD(url);
+}
 
 function getPOTD(url) {
   const iframe = document.querySelector("iframe");
