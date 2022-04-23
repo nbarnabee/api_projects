@@ -1,5 +1,4 @@
 window.onload = setCurrentDate;
-window.onload = checkFavs;
 document.getElementById("date-picker").onclick = getByDate;
 document.getElementById("fav-picker").onclick = getByFav;
 document.getElementById("add-to-favs").onclick = addToFavs;
@@ -12,6 +11,7 @@ function setCurrentDate() {
   let today = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
   document.getElementById("selected-date").valueAsDate = today;
   document.getElementById("selected-date").max = now.toLocaleDateString("en-ca");
+  checkFavs();
 }
 
 function checkFavs() {
