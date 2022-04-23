@@ -13,7 +13,7 @@
   <title>NASA Image of the Day</title>
 </head>
 
-<body>
+<body class="light-mode">
 
   <main class="stack">
     <iframe class="hidden"></iframe>
@@ -23,10 +23,18 @@
     <p class="explanation"></p>
   </main>
 
+  <section class="flex-column block">
 
-  <section class="datepicker">
-    <input type="date" value="">
-    <button type="button">Pick a date</button>
+    <section class="flex-row">
+      <input type="date" id="selected-date" value="">
+      <button type="button">Pick a date</button>
+      <button type="button">Add to favorites</button>
+    </section>
+
+    <section class="flex-row">
+      <button type="button">Show my favorites</button>
+    </section>
+
   </section>
 
   <script src="./main.js"></script>

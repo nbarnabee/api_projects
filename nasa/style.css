@@ -230,17 +230,30 @@ p {
   margin-top: 1rem;
 }
 
+.block {
+  margin-top: 1.5rem;
+}
+
+.block:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
 .copyright {
   margin-top: 0rem;
   font-size: 0.8rem;
 }
 
-.datepicker {
+.flex-row {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  margin: 2rem auto;
+  margin: 1rem auto;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }
 
 button {
@@ -254,11 +267,27 @@ button {
 }
 
 
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+.light-mode {
+  background-color: white;
+  color: black;
+}
+
 
 @media all and (max-width: 900px) {
   p {
     column-count: 1;
     width: 60ch;
   }
+}
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+    color: white;
+  }
 }
