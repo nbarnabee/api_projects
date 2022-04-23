@@ -1,4 +1,5 @@
 window.onload = setCurrentDate;
+window.onload = checkFavs;
 document.getElementById("date-picker").onclick = getByDate;
 document.getElementById("fav-picker").onclick = getByFav;
 document.getElementById("add-to-favs").onclick = addToFavs;
@@ -13,6 +14,11 @@ function setCurrentDate() {
   document.getElementById("selected-date").max = now.toLocaleDateString("en-ca");
 }
 
+function checkFavs() {
+  if (localStorage.getItem("favs"))
+  populateMenu();
+}
+
 function getByDate() {
   let dateValue = document.getElementById("selected-date").value;
   let url = `https://api.nasa.gov/planetary/apod?api_key=NGbXFaC948GisO5Nx2TmrXLKYXBa5dVQ2c5OjFKw&date=${dateValue}`;
@@ -20,8 +26,8 @@ function getByDate() {
 }
 
 function getByFav() {
-  const favorite = document.getElementById("favorites");
-  const favValue = favorite.option[favorite.selectedIndex].value;
+  const select = document.querySelector("select");
+  const favValue = select.option[select.selectedIndex].value;
   let url = `https://api.nasa.gov/planetary/apod?api_key=NGbXFaC948GisO5Nx2TmrXLKYXBa5dVQ2c5OjFKw&date=${favValue}`;
   getPOTD(url);
 }
@@ -31,7 +37,23 @@ function addToFavs() {
   if (localStorage.getItem("favs")) 
     localStorage.setItem("favs", `${localStorage.getItem("favs")}  ${newFav}`);
   else localStorage.setItem("favs", newFav);
+  populateMenu();
 }
+
+function populateMenu() {
+  let favList = localStorage.getItem("favs").split(" ").filter(element => element !== "");
+  let uniqueList = favList.filter((fav, i) => favList.indexOf(fav) === i).sort((a, b) => a > b ? 1 : -1);
+  console.log(favList);
+  console.log(uniqueList);
+  uniqueList.forEach(fav => {
+    let newOption = document.createElement("option");
+    newOption.value = fav;
+    newOption.innerHTML = `${fav}`;
+    document.getElementById("favorites").appendChild(newOption);
+  });
+}
+
+
 
 function getPOTD(url) {
   const iframe = document.querySelector("iframe");
