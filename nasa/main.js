@@ -34,13 +34,14 @@ function getByFav() {
 
 function addToFavs() {
   let newFav = document.getElementById("selected-date").value;
-  if (localStorage.getItem("favs")) 
+  if (localStorage.getItem("favs"))
     localStorage.setItem("favs", `${localStorage.getItem("favs")}  ${newFav}`);
   else localStorage.setItem("favs", newFav);
   populateMenu();
 }
 
 function populateMenu() {
+  document.getElementById("favorites").innerHTML = "";
   let favList = localStorage.getItem("favs").split(" ").filter(element => element !== "");
   let uniqueList = favList.filter((fav, i) => favList.indexOf(fav) === i).sort((a, b) => a > b ? 1 : -1);
   console.log(favList);
@@ -52,8 +53,6 @@ function populateMenu() {
     document.getElementById("favorites").appendChild(newOption);
   });
 }
-
-
 
 function getPOTD(url) {
   const iframe = document.querySelector("iframe");
