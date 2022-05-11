@@ -1,19 +1,27 @@
-//The user will enter a cocktail. Get a cocktail name, photo, and instructions and place them in the DOM
 document.querySelector("input").value = "";
 document.querySelector("button").addEventListener("click", getDrinks);
 let drinkList = [];
 
 function getDrinks() {
   const searchTerm = document.querySelector("input").value;
-
+  drinkList = [];
+  document.querySelector(".card-container").innerHTML = "";
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`)
   .then(res => res.json())
   .then(data => {
-    document.querySelector(".card").classList.remove("hidden");
     console.log(data);
     for (let i in data.drinks) {
-      drinkList[i] = new Drink(data.drinks[i].strDrink, data.drinks[i].strGlass, data.drinks[i].strInstructions);
-      getInstructions(data.drinks[i], i);
+      drinkList[i] = new Drink(
+        data.drinks[i].strDrink, 
+        data.drinks[i].strGlass,
+        data.drinks[i].strAlcoholic,
+        data.drinks[i].strDrinkThumb, 
+        data.drinks[i].strInstructions
+        );
+      getIngredients(data.drinks[i], i);
+    }
+    for (let drink of drinkList) {
+      drink.makeDrinkCardSmall();
     }
   })
   .catch(err => {
@@ -23,8 +31,8 @@ function getDrinks() {
   })
 };
 
-function getInstructions(obj, index) {
-  let ingredientsList = [];
+function getIngredients(obj, index) {
+  let ingredients = [];
     let ingredientVar;
     let ingredientMeasureVar;
       for (let i = 1; i <= 15; i++) {
@@ -32,8 +40,8 @@ function getInstructions(obj, index) {
         ingredientMeasureVar = `strMeasure${i}`;
         if (!obj[ingredientVar])
           break;
-        else ingredientsList.push([obj[ingredientMeasureVar], obj[ingredientVar]]);
-      drinkList[index].ingredients = ingredientsList;
+        else ingredients.push([obj[ingredientMeasureVar], obj[ingredientVar]]);
+      drinkList[index].ingredients = ingredients;
       };
 };
 
@@ -62,19 +70,23 @@ function getInstructions(obj, index) {
       document.querySelector("input").value = "";
     })
 
-    .catch(err => {
-      console.log(`error ${err}`)
-      alert("Sorry, we didn't find anything");
-      document.querySelector("input").value = "";
-    })
-}
 /*  Drink as a constructor function/class */
 
 class Drink {
-  constructor(name, glass, instructions) {
-    this.name = name;
+  constructor(name, glass, alcoholic, image, instructions) {
+    /* all of the following are strings */
+    this.name = name;   
     this.glass = glass;
-    this.instructions = instructions;
+    this.alcoholic = alcoholic;
+    this.image = image;  
+    this.instructions = instructions;  
+    /* the Drink has an additional property -- this.ingredients -- which is added by the getIngredients function, and is a 2D array with the following syntax: ["measure", "ingredient"] */
+  };
+  makeDrinkCardSmall() {
+    let drinkCardSmall = document.createElement("figure");
+    drinkCardSmall.innerHTML = `<img src=${this.image} class="card--small__img"><figcaption class="card--small__txt"><ul class="card--small__list"><li><h2>${this.name}</h2></li><li>(${this.alcoholic})</li><li>Rating</li></ul></figcaption>`;
+    drinkCardSmall.classList.add("card--small");
+    document.querySelector(".card-container").appendChild(drinkCardSmall);
   }
 }
 
