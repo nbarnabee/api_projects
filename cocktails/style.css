@@ -207,9 +207,12 @@ h2 {
   font-weight: bold;
 }
 
+h2 {
+  font-size: 1.25rem;
+}
+
 
 /* ----- Specific elements -------- */
-
 
 main {
   display: flex;
@@ -218,33 +221,53 @@ main {
   align-items: center;
 }
 
-.card {
-  background-color: var(--color-light);
-  width: min(90%, 400px);
-  margin: 20px auto;
-  padding-block: min(5vw, 50px);
-  padding-inline: min(4vw, 30px);
-  border: 1px solid var(--color-dark);
-  box-shadow: 0 2px 5px rgba(19, 18, 18, 0.2);
+body {
+  background-color: hsla(0, 0%, 97%, 1)
 }
 
-.card>* {
+.card-container {
+  max-width: 90%;
   margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
 }
 
-.card>*+* {
-  margin-top: 1rem;
-  width: 95%;
+.card--small {
+  display: flex;
+  gap: 10px;
+  background-color: white;
+  max-width: 25%;
+  width: max(120px, 25%);
+  height: 150px;
+  box-shadow: 2px 3px 3px rgba(19, 18, 18, 0.2);
 }
 
-.card>h2 {
-  text-align: center;
+.card--small__img {
+  height: 100%;
 }
 
-.card>img {
-  display: block;
-  max-height: 200px;
-  width: auto;
+.card--small__txt {
+  display: flex;
+  flex-direction: column;
+}
+
+.card--small__list {
+  list-style: none;
+}
+
+.modal__body {
+  position: absolute;
+  left: 50%;
+  top: 3rem;
+  transform: translateX(-50%);
+  width: 500px;
+  min-height: 200px;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 #ingredients {
@@ -268,4 +291,12 @@ main {
 
 .hidden {
   visibility: hidden;
+}
+
+
+@media (min-height: 700px) {
+  .modal__body {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
