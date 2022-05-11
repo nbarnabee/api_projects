@@ -231,7 +231,7 @@ body {
   margin-inline: auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 2%;
+  gap: 4vh 5vh;
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
@@ -239,7 +239,7 @@ body {
 
 .card--small {
   display: flex;
-  gap: 3vh, 5vh;
+  gap: 10px;
   background-color: white;
   width: min(400px, 90vw);
   height: 150px;
@@ -259,8 +259,14 @@ body {
 }
 
 .card--small__txt {
+  padding-top: 0.5rem;
   display: flex;
   flex-direction: column;
+}
+
+.card--small__title {
+  display: inline-block;
+  padding-right: 10px;
 }
 
 .card--small__list {
