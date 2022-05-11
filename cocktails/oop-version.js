@@ -83,7 +83,7 @@ class Drink {
   };
   makeDrinkCardSmall() {
     let drinkCardSmall = document.createElement("figure");
-    drinkCardSmall.innerHTML = `<img src=${this.image} class="card--small__img"><figcaption class="card--small__txt"><ul class="card--small__list"><li><h2>${this.name}</h2></li><li>(${this.alcoholic})</li><li>Rating</li></ul></figcaption>`;
+    drinkCardSmall.innerHTML = `<img src=${this.image} class="card--small__img"><figcaption class="card--small__txt"><ul class="card--small__list"><li><h2 class="card--small__title">${this.name}</h2><small>(${this.alcoholic})</small></li><li>Rating</li></ul></figcaption>`;
     drinkCardSmall.classList.add("card--small");
     document.querySelector(".card-container").appendChild(drinkCardSmall);
   }
