@@ -209,6 +209,7 @@ h2 {
 
 h2 {
   font-size: 1.25rem;
+  line-height: 1.2;
 }
 
 
@@ -230,7 +231,7 @@ body {
   margin-inline: auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2%;
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
@@ -238,12 +239,19 @@ body {
 
 .card--small {
   display: flex;
-  gap: 10px;
+  gap: 3vh, 5vh;
   background-color: white;
-  max-width: 25%;
-  width: max(120px, 25%);
+  width: min(400px, 90vw);
   height: 150px;
   box-shadow: 2px 3px 3px rgba(19, 18, 18, 0.2);
+  transition: 0.2s;
+}
+
+.card--small:hover {
+  transform: scale(1.1);
+  box-shadow: 4px 6px 8px rgba(19, 18, 18, 0.4);
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .card--small__img {
