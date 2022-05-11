@@ -11,64 +11,40 @@ function getDrinks() {
   .then(data => {
     document.querySelector(".card").classList.remove("hidden");
     console.log(data);
-    for (let drink of data.drinks) {
-      //turn each of the drinks into an object in the drink list
-      drinkList.push(Drink(drink.strDrink, drink.strGlass, drink.strInstructions));
+    for (let i in data.drinks) {
+      drinkList[i] = new Drink(data.drinks[i].strDrink, data.drinks[i].strGlass, data.drinks[i].strInstructions);
+      getInstructions(data.drinks[i], i);
     }
-    for (let e in data.drinks) {
-      //make an array containing the ingredients and measurements and add that to the drink object
-    let ingredientsList = [];
+  })
+  .catch(err => {
+    console.log(`error ${err}`)
+    alert("Sorry, we didn't find anything");
+    document.querySelector("input").value = "";
+  })
+};
+
+function getInstructions(obj, index) {
+  let ingredientsList = [];
     let ingredientVar;
-    let ingredientItem;
     let ingredientMeasureVar;
-    let ingredientMeasure;
       for (let i = 1; i <= 15; i++) {
         ingredientVar = `strIngredient${i}`;
         ingredientMeasureVar = `strMeasure${i}`;
-        ingredientItem = data.drinks[e][ingredientVar];
-        ingredientMeasure = data.drinks[e][ingredientMeasureVar];
-        if (!ingredientItem)
+        if (!obj[ingredientVar])
           break;
-        else if (ingredientMeasure)
-          ingredientsList.push([`${ingredientMeasure}, ${ingredientItem}`]);
-        else ingredientsList.push(ingredientItem);
-        }
-      drinkList[e].ingredients = ingredientsList;
-    };
-    
-/* consider rewriting the Drink thing as a constructor function, and then doing (let e in data.drinks) {
-  drinkList[e] = new Drink(data.drinks[e].strDrink, data.drinks[e].strGlass, data.drinks[e].strInstructions) - and could then return the drink instruction making to a separate function and call that as an argument
-}
-*/
+        else ingredientsList.push([obj[ingredientMeasureVar], obj[ingredientVar]]);
+      drinkList[index].ingredients = ingredientsList;
+      };
+};
 
-
-      /* --- Building the list of instructions --- */
+/*
+       --- Building the list of instructions --- 
     function getInstructions() {
       let instructionList = [`Select a ${data.drinks[0].strGlass}`];
       instructionList = instructionList.concat(data.drinks[0].strInstructions.split(". "));
       makeList(instructionList, "#instructions");
     };
 
-      /* --- Building the list of ingredients --- */
-    function getIngredients() {
-      let ingredientsList = [];
-      let ingredientVar;
-      let ingredientItem;
-      let ingredientMeasureVar;
-      let ingredientMeasure;
-      for (let i = 1; i <= 15; i++) {
-        ingredientVar = `strIngredient${i}`;
-        ingredientMeasureVar = `strMeasure${i}`;
-        ingredientItem = data.drinks[0][ingredientVar];
-        ingredientMeasure = data.drinks[0][ingredientMeasureVar];
-        if (!ingredientItem)
-          break;
-        else if (ingredientMeasure)
-          ingredientsList.push(`${ingredientMeasure} ${ingredientItem}`);
-        else ingredientsList.push(ingredientItem);
-        }
-      makeList(ingredientsList, "#ingredients");
-      };
 
       function makeList(arr, target) {
         document.querySelector([target]).innerHTML = "";
@@ -92,14 +68,16 @@ function getDrinks() {
       document.querySelector("input").value = "";
     })
 }
+/*  Drink as a constructor function/class */
 
-function Drink(name, glass, instructions) {
-  return {
-    name,
-    glass,
-    instructions,
+class Drink {
+  constructor(name, glass, instructions) {
+    this.name = name;
+    this.glass = glass;
+    this.instructions = instructions;
   }
 }
+
 
 // my thought is to have card items that can appear to the user
 // one card will be small, with the name of the drink and possibly a picture
