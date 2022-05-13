@@ -15,9 +15,9 @@ function getDrinks() {
         data.drinks[i].strGlass,
         data.drinks[i].strAlcoholic,
         data.drinks[i].strDrinkThumb, 
-        data.drinks[i].strInstructions
         );
       getIngredients(data.drinks[i], i);
+      getInstructions(data.drinks[i], i);
     }
     for (let drink of drinkList) {
       drink.makeDrinkCardSmall();
@@ -44,15 +44,13 @@ function getIngredients(obj, index) {
       };
 };
 
-/*
-       --- Building the list of instructions --- 
-    function getInstructions() {
-      let instructionList = [`Select a ${data.drinks[0].strGlass}`];
-      instructionList = instructionList.concat(data.drinks[0].strInstructions.split(". "));
-      makeList(instructionList, "#instructions");
+    function getInstructions(obj, index) {
+      let instructionList = [];
+      instructionList = instructionList.concat(obj.strInstructions.split(". "));
+      drinkList[index].instructions = instructionList;
     };
 
-
+    /*
       function makeList(arr, target) {
         document.querySelector([target]).innerHTML = "";
         arr.forEach(element => {
@@ -79,18 +77,20 @@ class Drink {
     this.alcoholic = alcoholic;
     this.image = image;  
     this.instructions = instructions;  
-    /* the Drink has an additional property -- this.ingredients -- which is added by the getIngredients function, and is a 2D array with the following syntax: ["measure", "ingredient"] */
+    /* the Drink has additional properties -- this.ingredients and this.instructions -- which are added by the getIngredients and getInstructions functions
+    ingredients is a 2D array with the following syntax: ["measure", "ingredient"] */
   };
+
   makeDrinkCardSmall() {
     let drinkCardSmall = document.createElement("figure");
     drinkCardSmall.innerHTML = `<img src=${this.image} class="card--small__img"><figcaption class="card--small__txt"><ul class="card--small__list"><li><h2 class="card--small__title">${this.name}</h2><small>(${this.alcoholic})</small></li><li>Rating</li></ul></figcaption>`;
     drinkCardSmall.classList.add("card--small");
     document.querySelector(".card-container").appendChild(drinkCardSmall);
+  };
+
+  makeDrinkCardLarge() {
+    let drinkCardLarge = document.createElement("section");
   }
 }
 
-
-// my thought is to have card items that can appear to the user
-// one card will be small, with the name of the drink and possibly a picture
-// the other card will appear when the small card is clicked on, and will include the full information
 
