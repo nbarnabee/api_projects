@@ -86,11 +86,11 @@ class Drink {
     drinkCardSmall.innerHTML = `<img src=${this.image} class="card--small__img"><figcaption class="card--small__txt"><ul class="card--small__list"><li><h2 class="card--small__title">${this.name}</h2><small>(${this.alcoholic})</small></li><li>Rating</li></ul></figcaption>`;
     drinkCardSmall.classList.add("card--small");
     document.querySelector(".card-container").appendChild(drinkCardSmall);
+    drinkCardSmall.addEventListener("click", this.makeDrinkCardLarge.bind(this));
   };
 
   makeDrinkCardLarge() {
     let drinkCardLarge = document.createElement("section");
+    console.log(`The user selected ${this.name}`);
   }
 }
-
-
