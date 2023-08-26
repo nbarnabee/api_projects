@@ -109,6 +109,7 @@ class Drink {
   }
 
   makeDrinkCardLarge() {
+    // actually, no.  I should have a preexisting element that sits out of the window and is called up and populated when someone clicks on a drink
     let drinkCardLarge = document.createElement("section");
     console.log(`The user selected ${this.name}`);
   }
